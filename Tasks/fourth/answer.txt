@@ -1,0 +1,27 @@
+
+
+Запрос был в MYSQL
+
+CREATE TABLE `sportsmen`(
+    `id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+	`ФИО` VARCHAR(150) CHARACTER SET utf8 DEFAULT NULL,
+    `e-mail` VARCHAR(100) CHARACTER SET utf8 UNIQUE DEFAULT NULL,
+    `телефон(российский номер)` VARCHAR(30) CHARACTER SET utf8 UNIQUE DEFAULT NULL,
+    `дата рождения` VARCHAR(20) CHARACTER SET utf8 DEFAULT NULL,
+    `возраст` INT(3) DEFAULT NULL,
+    `дата и время создания записи` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `номер паспорта` VARCHAR(30) CHARACTER SET utf8 UNIQUE DEFAULT NULL,
+    `среднее место на соревнованиях` INT(4) DEFAULT NULL,
+    `биография` TEXT DEFAULT NULL,
+    `видеопрезентация` LONGBLOB DEFAULT NULL
+)
+
+
+Запрос ниже вызвал у меня некоторые трудности, поэтому начал усилино учить SQL, запрос прошел проверку в моей тестовой
+Базе данных. 
+
+SELECT DISTINCT `ФИО` FROM `sportsman` INNER JOIN `results`
+WHERE `sportsman`.`id` = `results`.`Sportsmen_id` 
+GROUP BY `sportsman`.`id`
+ORDER BY COUNT(`sportsman`.`id`)
+DESC LIMIT 5;
